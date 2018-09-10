@@ -39,3 +39,6 @@ Optimalerweise sollte die Entwicklung behaviour-driven oder acceptence-test-driv
 Um Dritten einen Überblick über die Anwendung und ihren Kontext zu geben sollte ein Architekturdokumentation gepflegt werden. In dieser Dokumentation sollte beschrieben werden in welchem Kontext die Anwendung existiert, warum sie existiert und welche Schnittstellen zu anderen Systemen existieren. Die Dokumentation sollte vorzugsweise als *.adoc verfasst werden.
 ### JavaDoc
 Das JavaDoc sollte verwendet werden um einem Dritten den Einstieg in die API eines Projektes zu erleichtern. Das bedeuted, dass package-infos, öffentliche Klassen und Methoden zu dokumentieren sind insofern eine nötige Komplexität erreicht ist. 
+
+## Continuous Integration :arrows_counterclockwise:
+Als CICD Plattform sollte vorzugsweise der interne TeamCity Server gewählt werden. Nachdem ein TeamCity Projekt angelegt wurde und der erste Build durchgelaufen ist, kann anhand [dieser Dokumentation](https://confluence.jetbrains.com/display/TCD9/IntelliJ+IDEA) das Code Coverage Reporting aktiviert werden.

@@ -27,7 +27,7 @@ In der Vergangenheit haben wir gute Erfahrungen damit gemacht Features oder grö
 Mob Reviews sollten, ebenso wie Pull Requests, kontinuierlich in der Entwicklung stattfinden und sind generell vor großen Architekturentscheidungen zu empfehlen. Außerdem hat sich diese Art des Reviews nach Projektabschluss als nützlich erwiesen, um gemachte Fehler zu identifizieren und in der Zukunft zu vermeiden.
 
 ## Pair Programming :two_men_holding_hands:
-Pair Programming sollte generell nach Belieben praktiziert werden. Gute Erfahrungen haben wir in der Vergangenheit damit gemacht, dass ein Entwickler einen fehlschlagenden Test implementiert und der zweite den Code Under Test entwickelt und anschließend einen weiteren fehlschlagenden Test implementiert.
+Pair Programming sollte generell nach Belieben praktiziert werden. Gute Erfahrungen haben wir in der Vergangenheit damit gemacht, dass ein Entwickler einen fehlschlagenden Test implementiert, der Zweite den Code Under Test entwickelt und anschließend einen weiteren fehlschlagenden Test implementiert.
 
 ## Double Loop - Outside In Development :loop:
 Optimalerweise sollte die Entwicklung behaviour-driven oder acceptence-test-driven stattfinden. Dabei kann beispielsweise ein Feature mit [Cucumber](https://cucumber.io/) spezifiert werden und anschließend test-driven entwickelt werden. Alternative Bilbiotheken für dieses Vorgehensmodell wären [JGiven](http://jgiven.org/) und [JBehave](https://jbehave.org/).

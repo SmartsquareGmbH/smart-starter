@@ -18,7 +18,7 @@ Für die Analyse der Architektur ist im Projekttemplate kein Standard hinterlegt
 Wir möchten uns in diesem Dokument nicht auf eine minimale Code Coverage festlegen, jedoch sollte jeder Entwickler auch durch die Code Coverage prüfen, ob zusätzlich zum TDD Zyklus Tests implementiert werden müssen. Die Coverage wird in den Beispielprojekten durch JaCoCo ermittelt.
 
 ## Code Review :cop:
-Um die Qualität unserer Software stetig zu steigern, sind Code Reviews eine gute Möglichkeit. Ein Code Review sollte _mindestens_ ein mal vor einer Auslieferung oder Projektübergabe stattfinden, bestenfalls jedoch kontinuierlich während der Entwicklung.
+Um die Qualität unserer Software stetig zu steigern sind Code Reviews eine gute Möglichkeit. Ein Code Review sollte _mindestens_ ein mal vor einer Auslieferung oder Projektübergabe stattfinden, bestenfalls jedoch kontinuierlich während der Entwicklung.
 
 ### Pull Requests
 In der Vergangenheit haben wir gute Erfahrungen damit gemacht Features oder größere Refactorings in Pull Requests zu entwickeln. Eine Entwicklung muss dadurch vor dem Merge in den Entwicklungsbranch ein Code Review durch einen weiteren Mitarbeiter durchlaufen. 

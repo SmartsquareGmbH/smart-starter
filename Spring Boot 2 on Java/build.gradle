@@ -14,6 +14,7 @@ buildscript {
 
 apply plugin: 'pmd'
 apply plugin: 'java'
+apply plugin: 'jacoco'
 apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 apply plugin: 'org.springframework.boot'
@@ -86,4 +87,11 @@ tasks.withType(Pmd) {
 pmd {
     ignoreFailures = true
     pmdTest.enabled = false
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+    }
 }

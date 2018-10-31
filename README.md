@@ -37,6 +37,7 @@ Optimalerweise sollte die Entwicklung behaviour-driven oder acceptence-test-driv
 ″Working Software Over Comprehensive Documentation″, das ist auch unsere Ansicht als Smartsquare GmbH, jedoch erachten wir ein gutes JavaDoc und eine minimale Architekturdokumentation als sehr sinnvoll.
 ### Architekturdokumentation
 Um Dritten einen Überblick über die Anwendung und ihren Kontext zu geben sollte ein Architekturdokumentation gepflegt werden. In dieser Dokumentation sollte beschrieben werden in welchem Kontext die Anwendung existiert, warum sie existiert und welche Schnittstellen zu anderen Systemen existieren. Die Dokumentation sollte vorzugsweise als *.adoc verfasst werden.
+Ein Template nach arc42 findet sich [hier](https://smartsquare.github.io/archdoc).
 ### JavaDoc
 Das JavaDoc sollte verwendet werden um einem Dritten den Einstieg in die API eines Projektes zu erleichtern. Das bedeuted, dass package-infos, öffentliche Klassen und Methoden zu dokumentieren sind insofern eine nötige Komplexität erreicht ist. 
 

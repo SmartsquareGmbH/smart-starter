@@ -1,31 +1,32 @@
 buildscript {
-	ext {
-        gradleVersion = '4.9'
-		kotlinVersion = '1.2.60'
-		springBootVersion = '2.1.0.M2'
-		ktlintGradleVersion = '5.0.0'
-		ktlintVersion = '0.27.0'
-		detektVersion = '1.0.0.RC8'
-        gradleVersionsPluginVersion = '0.20.0'
-        jacocoPluginVersion = '0.12.0'
-        jacocoVersion = '0.8.2'
-        junitVersion = '5.2.0'
-        kluentVersion = '1.41'
-        mockkVersion = '1.8.6'
-	}
-	repositories {
-		mavenCentral()
+    ext {
+        gradleVersion = '7.6.2'
+        kotlinVersion = '1.9.0'
+        springBootVersion = '3.2.0-M2'
+        ktlintGradleVersion = '11.5.1'
+        ktlintVersion = '0.50.0'
+        detektVersion = '1.23.1'
+        gradleVersionsPluginVersion = '0.47.0'
+        jacocoPluginVersion = '0.16.0'
+        jacocoVersion = '0.8.10'
+        junitJupiterVersion = '5.10.0'
+        junitVersion = '4.13.1'
+        kluentVersion = '1.73'
+        mockkVersion = '1.13.7'
+    }
+    repositories {
+        mavenCentral()
         gradlePluginPortal()
-		maven { url 'https://repo.spring.io/snapshot' }
-		maven { url 'https://repo.spring.io/milestone' }
-	}
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
-		classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}"
-		classpath "com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion"
-		classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
-		classpath "gradle.plugin.org.jlleitschuh.gradle:ktlint-gradle:$ktlintGradleVersion"
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintGradleVersion"
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:$jacocoPluginVersion"
     }
 }
@@ -43,55 +44,59 @@ apply plugin: 'com.vanniktech.android.junit.jacoco'
 group = 'de.smartsquare'
 version = '0.0.1-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 17
 
 compileKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ['-Xjsr305=strict']
-		jvmTarget = '1.8'
-	}
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '17'
+    }
 }
 
 compileTestKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ['-Xjsr305=strict']
-		jvmTarget = '1.8'
-	}
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '17'
+    }
 }
 
 repositories {
-    jcenter()
     mavenCentral()
-	maven { url 'https://repo.spring.io/snapshot' }
-	maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+    testImplementation "junit:junit:$junitVersion"
     testImplementation "org.amshove.kluent:kluent:$kluentVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 }
 
 detekt {
     version = detektVersion
 
-    profile('main') {
-        input = 'src/main/kotlin'
-        config = 'config/detekt/detekt.yml'
-        output = "$buildDir/reports/detekt"
-    }
+    allRules = true
+    buildUponDefaultConfig = true
+
+    source.setFrom('src/main/kotlin')
+
+    config.setFrom('config/detekt/detekt.yml')
 }
 
 ktlint {
     version = ktlintVersion
-    reporters = ['CHECKSTYLE']
+    reporters {
+        reporter 'checkstyle'
+    }
 }
 
 junitJacoco {
@@ -103,6 +108,15 @@ wrapper {
 }
 
 afterEvaluate {
-    check.dependsOn detektCheck
     jacocoTestReport.dependsOn test
+}
+
+tasks.named("detekt").configure {
+    reports {
+        xml.outputLocation.set(file("$buildDir/reports/detekt.xml"))
+        html.outputLocation.set(file("$buildDir/reports/detekt.html"))
+        txt.outputLocation.set(file("$buildDir/reports/detekt.txt"))
+        sarif.outputLocation.set(file("$buildDir/reports/detekt.sarif"))
+        md.outputLocation.set(file("$buildDir/reports/detekt.md"))
+    }
 }

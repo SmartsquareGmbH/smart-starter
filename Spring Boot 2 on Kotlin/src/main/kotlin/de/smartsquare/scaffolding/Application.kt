@@ -9,4 +9,5 @@ class Application
 @Suppress("SpreadOperator")
 fun main(args: Array<String>) {
     runApplication<Application>(*args)
+    print("Test")
 }

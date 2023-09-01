@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  DIRECTORIES: ('Spring Boot 2 on Java' 'Spring Boot 2 on Kotlin')
+  DIRECTORIES: "'Spring Boot 2 on Java' 'Spring Boot 2 on Kotlin'"
 
 jobs:
   check:
@@ -27,8 +27,9 @@ jobs:
       - name: Generate coverage report
         run: | 
           for dir in ${{ env.DIRECTORIES }}; do
-            cd dir
+            cd "$dir"
             ./gradlew jacocoTestReport
+            cd "${{ github.workspace }}"
           done
 
       - name: Add coverage report to PR

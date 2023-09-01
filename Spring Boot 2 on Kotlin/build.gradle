@@ -104,4 +104,5 @@ wrapper {
 
 afterEvaluate {
     check.dependsOn detektCheck
+    jacocoTestReport.dependsOn test
 }

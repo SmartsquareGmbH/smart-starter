@@ -95,3 +95,7 @@ jacocoTestReport {
         csv.enabled true
     }
 }
+
+afterEvaluate {
+    jacocoTestReport.dependsOn test
+}

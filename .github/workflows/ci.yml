@@ -3,6 +3,9 @@ name: Measure coverage
 on:
   pull_request:
 
+env:
+  DIRECTORIES: ('Spring Boot 2 on Java' 'Spring Boot 2 on Kotlin')
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -11,7 +14,6 @@ jobs:
     strategy:
       matrix:
         java: [ 8 ]
-        directory: [ 'Spring Boot 2 on Java', 'Spring Boot 2 on Kotlin' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,8 +25,11 @@ jobs:
           cache: 'gradle'
 
       - name: Generate coverage report
-        run: ./gradlew jacocoTestReport
-        working-directory: ${{ matrix.directory }}
+        run: | 
+          for dir in ${{ env.DIRECTORIES }}; do
+            cd dir
+            ./gradlew jacocoTestReport
+          done
 
       - name: Add coverage report to PR
         id: jacoco

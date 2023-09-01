@@ -11,6 +11,7 @@ jobs:
     strategy:
       matrix:
         java: [ 8 ]
+        directory: [ 'Spring Boot 2 on Java', 'Spring Boot 2 on Kotlin' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +24,7 @@ jobs:
 
       - name: Generate coverage report
         run: ./gradlew jacocoTestReport
+        working-directory: ${{ matrix.directory }}
 
       - name: Add coverage report to PR
         id: jacoco

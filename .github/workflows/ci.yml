@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        java: [ 8 ]
+        java: [ 17 ]
 
     steps:
       - uses: actions/checkout@v3

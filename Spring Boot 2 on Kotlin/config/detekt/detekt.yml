@@ -1,5 +1,3 @@
-failFast: true
-
 comments:
   UndocumentedPublicClass:
     active: false

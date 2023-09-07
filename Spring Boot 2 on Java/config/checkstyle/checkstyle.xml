@@ -75,7 +75,7 @@
             <property name="processJavadoc" value="false"/>
         </module>
 
-        <!-- Checks for Size Violations.                    -->
+        <!-- Checks for Size Violations.                                   -->
         <!-- See https://checkstyle.sourceforge.io/checks/sizes/index.html -->
         <module name="MethodLength"/>
         <module name="ParameterNumber"/>
